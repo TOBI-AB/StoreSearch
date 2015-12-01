@@ -10,10 +10,19 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
+    // MARK: - IBOutlets
+    @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Properties
+    var searchController: UISearchController!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "App name, artist, song, album, e-book"
+        searchController.searchBar.delegate = self
+        tableView.tableHeaderView = searchController.searchBar
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,3 +42,15 @@ class SearchViewController: UIViewController {
     */
 
 }
+
+// MARK: - UISearchBarDelegate
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        print(searchBar.text)
+    }
+}
+
+
+
+
+
